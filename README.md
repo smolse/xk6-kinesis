@@ -34,11 +34,11 @@ This plugin uses the AWS SDK Go v2 default credential chain. It looks for creden
 1. Environment variables.
    1. Static Credentials (`AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, `AWS_SESSION_TOKEN`)
    2. Web Identity Token (`AWS_WEB_IDENTITY_TOKEN_FILE`)
-1. Shared configuration files.
+2. Shared configuration files.
    1. SDK defaults to `credentials` file under `.aws` folder that is placed in the home folder on your computer.
-   1. SDK defaults to `config` file under `.aws` folder that is placed in the home folder on your computer.
-1. If your application uses an ECS task definition or RunTask API operation, IAM role for tasks.
-1. If your application is running on an Amazon EC2 instance, IAM role for Amazon EC2.
+   2. SDK defaults to `config` file under `.aws` folder that is placed in the home folder on your computer.
+3. If your application uses an ECS task definition or RunTask API operation, IAM role for tasks.
+4. If your application is running on an Amazon EC2 instance, IAM role for Amazon EC2.
 
 Source: https://aws.github.io/aws-sdk-go-v2/docs/configuring-sdk/#specifying-credentials
 
@@ -47,6 +47,11 @@ Source: https://aws.github.io/aws-sdk-go-v2/docs/configuring-sdk/#specifying-cre
 Currently, `xk6-kinesis` exposes a small subset of Kinesis API actions that may be extended in the future:
 * [PutRecord](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecord.html)
 * [PutRecords](https://docs.aws.amazon.com/kinesis/latest/APIReference/API_PutRecords.html)
+
+This extension implements a synchronous client as well as an asynchronous client that can be used in a promise chain or
+via `async/await` since k6 version [v0.43](https://k6.io/blog/k6-product-update-v0-43/). See
+[examples/put-record-localstack.js](examples/put-record-localstack.js) and
+[examples/put-record-localstack-async.js](examples/put-record-localstack-async.js) for examples.
 
 ### Example
 
