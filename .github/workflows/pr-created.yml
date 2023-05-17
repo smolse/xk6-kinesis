@@ -1,0 +1,33 @@
+name: PR created
+
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  lint-and-test:
+    name: Run linters and tests
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout PR
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: '1.19'
+
+      - name: Run golangci-lint
+        uses: golangci/golangci-lint-action@v3
+        with:
+          version: v1.52.2
+
+      - name: Run unit tests
+        run: go test -v ./... -coverprofile=./cover.out
+
+      - name: Check code coverage
+        uses: vladopajic/go-test-coverage@v2
+        with:
+          profile: cover.out
+          local-prefix: github.com/smolse/xk6-kinesis
+          threshold-total: 90
