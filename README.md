@@ -1,5 +1,10 @@
 # xk6-kinesis
 
+> [!NOTE]
+> This extension was created in April 2023 when the [k6-jslib-aws](https://github.com/grafana/k6-jslib-aws) library
+didn't have support for Kinesis. Support for Kinesis was added in `k6-jslib-aws` version 0.8.0, and it's a better option
+for interacting with Kinesis from k6 nowadays.
+
 This is a [Kinesis Data Streams](https://aws.amazon.com/kinesis/data-streams/) client library for
 [k6](https://github.com/grafana/k6), implemented as an extension using the [xk6](https://github.com/grafana/xk6) system.
 
